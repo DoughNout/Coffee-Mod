@@ -125,6 +125,23 @@ public class CoffeeMachineModel extends ModelBase
     Shape5.render(f5);
   }
   
+  public void renderModel(float f)
+  {
+	  Base.render(f);
+	  Side.render(f);
+	  Top.render(f);
+	  Shape2.render(f);
+	  Shape1.render(f);
+	  Shape3.render(f);
+	  Shape4.render(f);
+	  Shape21.render(f);
+	  Shape11.render(f);
+	  Shape211.render(f);
+	  Shape2111.render(f);
+	  Shape21111.render(f);
+	  Shape5.render(f);
+  }
+  
   private void setRotation(ModelRenderer model, float x, float y, float z)
   {
     model.rotateAngleX = x;
