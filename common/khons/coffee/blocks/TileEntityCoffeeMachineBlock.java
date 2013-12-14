@@ -1,5 +1,6 @@
 package khons.coffee.blocks;
 
+import khons.coffee.entity.TileEntityCoffeeMachineEntity;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
