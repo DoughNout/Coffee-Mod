@@ -1,13 +1,12 @@
 package khons.coffee;
 
 import khons.coffee.blocks.BlockCoffeeMachine;
+import khons.coffee.entity.TileEntityCoffeeMachine;
 import khons.coffee.proxy.CommonProxy;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.*;
 import cpw.mods.fml.common.SidedProxy;
@@ -46,6 +45,8 @@ public class CoffeeCore {
 		coffeeMachine = new BlockCoffeeMachine(3773, Material.iron).setCreativeTab(CreativeTabs.tabBlock).setUnlocalizedName("coffeeMachine");
 		
 		GameRegistry.registerBlock(coffeeMachine, "coffeeMachine");
+		
+		GameRegistry.registerTileEntity(TileEntityCoffeeMachine.class, "coffeeMachine");
 		
 		LanguageRegistry.addName(coffeeMachine, "Coffee Machine");
 	}

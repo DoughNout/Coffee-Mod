@@ -76,6 +76,17 @@ public class ModelCoffeeMachine extends ModelBase
     Spout.render(f5);
   }
   
+  public void renderModel(float f)
+  {
+	  Back.render(f);
+	  Drainage.render(f);
+	  DrainageWallLeft.render(f);
+	  DrainageWallFront.render(f);
+	  DrainageWallRight.render(f);
+	  Top.render(f);
+	  Spout.render(f);
+  }
+  
   private void setRotation(ModelRenderer model, float x, float y, float z)
   {
     model.rotateAngleX = x;
