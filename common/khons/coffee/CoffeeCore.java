@@ -1,7 +1,6 @@
 package khons.coffee;
 
-import khons.coffee.blocks.TileEntityCoffeeMachineBlock;
-import khons.coffee.entity.TileEntityCoffeeMachineEntity;
+import khons.coffee.blocks.BlockCoffeeMachine;
 import khons.coffee.proxy.CommonProxy;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -46,11 +45,9 @@ public class CoffeeCore {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent evt)
 	{
-		coffeeMachine = new TileEntityCoffeeMachineBlock(3773, Material.iron).setCreativeTab(CreativeTabs.tabBlock).setUnlocalizedName("coffeeMachine");
+		coffeeMachine = new BlockCoffeeMachine(3773, Material.iron).setCreativeTab(CreativeTabs.tabBlock).setUnlocalizedName("coffeeMachine");
 		
 		GameRegistry.registerBlock(coffeeMachine, "coffeeMachine");
-		
-		GameRegistry.registerTileEntity(TileEntityCoffeeMachineEntity.class, "tileEntityCoffeeMachine");
 		
 		LanguageRegistry.addName(coffeeMachine, "Coffee Machine");
 	}
