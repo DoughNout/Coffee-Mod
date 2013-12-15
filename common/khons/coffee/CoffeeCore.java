@@ -1,8 +1,11 @@
 package khons.coffee;
 
+import khons.coffee.blocks.BlockCoffeeMachine;
+import khons.coffee.entity.TileEntityCoffeeMachine;
 import khons.coffee.items.ItemCoffeeMug;
 import khons.coffee.proxy.CommonProxy;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -19,7 +22,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-@Mod(modid = "coffee", name = "Coffee Mod", version = "0.1.0")
+@Mod(modid = "coffee", name = "Coffee Mod", version = "0.2.0")
 @NetworkMod(serverSideRequired = false, clientSideRequired = true)
 public class CoffeeCore {
 
@@ -63,8 +66,7 @@ public class CoffeeCore {
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent evt) {
-		// coffeeMachine = new BlockCoffeeMachine(3773,
-		// Material.iron).setCreativeTab(CreativeTabs.tabMisc).setUnlocalizedName("coffeeMachine");
+		coffeeMachine = new BlockCoffeeMachine(3773, Material.iron).setCreativeTab(CreativeTabs.tabMisc).setUnlocalizedName("coffeeMachine");
 
 		coffeeMug = new Item(3773).setTextureName("coffee:mug").setCreativeTab(CreativeTabs.tabMisc).setUnlocalizedName("coffeeMug");
 
@@ -88,12 +90,11 @@ public class CoffeeCore {
 		mugDeadEye = new ItemCoffeeMug(3789).setTextureName("coffee:coffeeMug").setCreativeTab(CreativeTabs.tabMisc).setUnlocalizedName("mugDeadEye");
 		mugEspresso = new ItemCoffeeMug(3790).setTextureName("coffee:coffeeMug").setCreativeTab(CreativeTabs.tabMisc).setUnlocalizedName("mugEspresso");
 
-		// GameRegistry.registerBlock(coffeeMachine, "coffeeMachine");
+		GameRegistry.registerBlock(coffeeMachine, "coffeeMachine");
 
-		// GameRegistry.registerTileEntity(TileEntityCoffeeMachine.class,
-		// "coffeeMachine");
+		GameRegistry.registerTileEntity(TileEntityCoffeeMachine.class, "coffeeMachine");
 
-		// LanguageRegistry.addName(coffeeMachine, "Coffee Machine");
+		LanguageRegistry.addName(coffeeMachine, "Coffee Machine");
 		LanguageRegistry.addName(coffeeMug, "Coffee Mug");
 		LanguageRegistry.addName(coffee, "Coffee");
 
@@ -109,7 +110,7 @@ public class CoffeeCore {
 		LanguageRegistry.addName(Latte, "Latte");
 		LanguageRegistry.addName(MochaLatte, "Mocha Latte");
 		LanguageRegistry.addName(RedEye, "Red Eye");
-		
+
 		LanguageRegistry.addName(mugAmericano, "Mug of Americano");
 		LanguageRegistry.addName(mugBlackEye, "Mug of Black Eye");
 		LanguageRegistry.addName(mugCafeAuLait, "Mug of Cafe au Lait");
@@ -122,12 +123,12 @@ public class CoffeeCore {
 
 	private ItemStack water = new ItemStack(Item.bucketWater);
 
-	// private ItemStack expresso = new ItemStack(Espresso);
-
 	@EventHandler
 	public void init(FMLInitializationEvent evt) {
 		proxy.registerRenderThings();
 
+		GameRegistry.addShapedRecipe(new ItemStack(coffeeMachine), "rrr", "rci", "rri", 'c', new ItemStack(coffee), 'r', new ItemStack(Block.cloth, 1), 'i', new ItemStack(Item.ingotIron));
+		
 		GameRegistry.addShapedRecipe(new ItemStack(coffeeMug), "b b", "b b", "bbb", 'b', new ItemStack(Item.brick));
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Espresso), water, water, new ItemStack(coffee));
@@ -137,7 +138,7 @@ public class CoffeeCore {
 		GameRegistry.addShapelessRecipe(new ItemStack(Americano), new ItemStack(Espresso), water);
 		GameRegistry.addShapelessRecipe(new ItemStack(Latte), new ItemStack(Espresso), new ItemStack(Item.bucketMilk));
 		GameRegistry.addShapelessRecipe(new ItemStack(MochaLatte), new ItemStack(Latte), new ItemStack(Item.dyePowder, 1, 3));
-		
+
 		GameRegistry.addShapedRecipe(new ItemStack(mugAmericano), "a", "m", 'a', new ItemStack(Americano), 'm', new ItemStack(coffeeMug));
 		GameRegistry.addShapedRecipe(new ItemStack(mugBlackEye), "a", "m", 'a', new ItemStack(BlackEye), 'm', new ItemStack(coffeeMug));
 		GameRegistry.addShapedRecipe(new ItemStack(mugCafeAuLait), "a", "m", 'a', new ItemStack(CafeAuLait), 'm', new ItemStack(coffeeMug));
